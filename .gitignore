@@ -1,0 +1,26 @@
+# PyInstaller Output
+build/
+dist/
+*.spec
+
+# Env Cache
+__pycache__/
+*.pyc
+
+# Local Data
+download_history.json
+config.json
+yantra_logs.txt
+
+# Temp & Artifacts
+assets/app_icon.ico
+*.png
+test_out.txt
+*.webm
+*.mp4
+*.mkv
+
+# Binaries
+Release/
+*.exe
+*.zip

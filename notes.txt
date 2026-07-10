@@ -1,0 +1,10 @@
+MEDIA YANTRA v1.0.0
+===================
+
+Welcome to the ultimate, high-speed, multi-threaded Media Downloader!
+
+Developed and maintained exclusively by:
+➤ Kartik Kothalkar (Open Source Warrior)
+
+Thank you for choosing Media Yantra. Enjoy seamless, blazing fast video and audio extractions natively from any platform safely.
+Enjoy!

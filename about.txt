@@ -1,0 +1,11 @@
+===================================================
+                  MEDIA YANTRA
+===================================================
+
+Welcome to Media Yantra - The Ultimate Media Downloader!
+
+Developed & Maintained proudly by:
+Kartik Kothalkar (Open Source Warrior)
+
+Thank you for choosing Media Yantra! 
+Click 'Next' to continue with the installation.

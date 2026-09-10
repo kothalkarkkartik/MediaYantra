@@ -18,6 +18,9 @@ class DownloadWorker(threading.Thread):
         self._is_cancelled = False
         self.daemon = True
         self.info = None
+        
+        self._pause_event = threading.Event()
+        self._pause_event.set()
 
     def run(self):
         base_opts = {
@@ -46,6 +49,8 @@ class DownloadWorker(threading.Thread):
         engines = [
              ('yt-dlp (Primary Standard)', self._run_ytdlp, [base_opts]),
              ('yt-dlp (Android Client Fallback)', self._run_ytdlp_android, [base_opts]),
+             ('yt-dlp (iOS Client Fallback)', self._run_ytdlp_ios, [base_opts]),
+             ('yt-dlp (TV Client Fallback)', self._run_ytdlp_tv, [base_opts]),
              ('youtube-dl (Legacy Fallback)', self._run_youtubedl, [base_opts]),
              ('pytubefix (Python API Fallback)', self._run_pytubefix, [])
         ]
@@ -75,14 +80,28 @@ class DownloadWorker(threading.Thread):
             
     def _run_ytdlp_android(self, opts):
         import yt_dlp
-        android_opts = copy.deepcopy(opts)
+        android_opts = opts.copy()
         android_opts['extractor_args'] = {'youtube': {'client': ['android']}}
         with yt_dlp.YoutubeDL(android_opts) as ydl:
             return ydl.extract_info(self.url, download=True)
 
+    def _run_ytdlp_ios(self, opts):
+        import yt_dlp
+        ios_opts = opts.copy()
+        ios_opts['extractor_args'] = {'youtube': {'client': ['ios']}}
+        with yt_dlp.YoutubeDL(ios_opts) as ydl:
+            return ydl.extract_info(self.url, download=True)
+            
+    def _run_ytdlp_tv(self, opts):
+        import yt_dlp
+        tv_opts = opts.copy()
+        tv_opts['extractor_args'] = {'youtube': {'client': ['tv']}}
+        with yt_dlp.YoutubeDL(tv_opts) as ydl:
+            return ydl.extract_info(self.url, download=True)
+
     def _run_youtubedl(self, opts):
         import youtube_dl
-        ydl_opts = copy.deepcopy(opts)
+        ydl_opts = opts.copy()
         ydl_opts.pop('logger', None) # Legacy youtube_dl can conflict with custom loggers
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             return ydl.extract_info(self.url, download=True)
@@ -91,6 +110,7 @@ class DownloadWorker(threading.Thread):
         from pytubefix import YouTube
         
         def _pytube_progress(stream, chunk, bytes_remaining):
+            self._pause_event.wait()
             if self._is_cancelled:
                 raise Exception("Download Cancelled by User")
             total = stream.filesize
@@ -125,6 +145,8 @@ class DownloadWorker(threading.Thread):
         return {"title": yt.title, "url": self.url, "thumbnail": yt.thumbnail_url}
 
     def _internal_hook(self, d):
+        self._pause_event.wait()
+        
         if self._is_cancelled:
             raise Exception("Download Cancelled by User")
             
@@ -154,3 +176,10 @@ class DownloadWorker(threading.Thread):
 
     def cancel(self):
         self._is_cancelled = True
+        self._pause_event.set()  # Unblock if paused to allow cancel exception
+
+    def pause(self):
+        self._pause_event.clear()
+
+    def resume(self):
+        self._pause_event.set()

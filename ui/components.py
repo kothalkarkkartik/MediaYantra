@@ -6,13 +6,13 @@ class SidebarButton(ctk.CTkButton):
             master=master,
             text=text,
             command=command,
-            corner_radius=8,
-            height=40,
+            corner_radius=20,
+            height=45,
             border_spacing=10,
-            text_color=("gray10", "gray90"),
-            hover_color=("gray70", "gray30"),
+            text_color="#F5F5DC",
+            hover_color="#3E3C38",
             anchor="w",
-            font=ctk.CTkFont(size=14),
+            font=ctk.CTkFont(family="Ink Free", size=18, weight="bold"),
             fg_color="transparent",
             **kwargs
         )

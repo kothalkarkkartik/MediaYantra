@@ -19,7 +19,7 @@ class VideoDownloaderFrame(ctk.CTkFrame):
         self.grid_columnconfigure(0, weight=1)
         
         # Header
-        self.header = ctk.CTkLabel(self, text="⯈ Video Downloader", font=ctk.CTkFont(size=28, weight="bold"), text_color="#A855F7")
+        self.header = ctk.CTkLabel(self, text="✎ Video Downloader", font=ctk.CTkFont(family="Ink Free", size=36, weight="bold"), text_color="#FFB347")
         self.header.grid(row=0, column=0, pady=(20, 10), sticky="w", padx=30)
         
         # URL Input Area
@@ -27,10 +27,10 @@ class VideoDownloaderFrame(ctk.CTkFrame):
         self.input_frame.grid(row=1, column=0, padx=30, pady=(0, 20), sticky="ew")
         self.input_frame.grid_columnconfigure(0, weight=1)
         
-        self.url_entry = ctk.CTkEntry(self.input_frame, placeholder_text="Video URL...", height=40, corner_radius=8)
+        self.url_entry = ctk.CTkEntry(self.input_frame, placeholder_text="✎ Paste Video URL...", height=45, font=ctk.CTkFont(family="Ink Free", size=18), corner_radius=15, border_width=2, border_color="#F5F5DC", fg_color="#3E3C38", text_color="#F5F5DC")
         self.url_entry.grid(row=0, column=0, sticky="ew", padx=(0, 10))
         
-        self.fetch_btn = ctk.CTkButton(self.input_frame, text="Fetch Metadata", height=40, width=120, corner_radius=8, fg_color="#3B82F6", hover_color="#2563EB")
+        self.fetch_btn = ctk.CTkButton(self.input_frame, text="Fetch Metadata", height=45, width=140, corner_radius=15, fg_color="transparent", border_width=2, border_color="#87CEEB", text_color="#87CEEB", hover_color="#5E4C38", font=ctk.CTkFont(family="Ink Free", size=18, weight="bold"))
         self.fetch_btn.grid(row=0, column=1)
         
         # Content Area - Two Columns (Left: Thumbnail & Info, Right: Options)
@@ -41,60 +41,60 @@ class VideoDownloaderFrame(ctk.CTkFrame):
         self.content_frame.grid_rowconfigure(0, weight=1)
         
         # --- Left Column: Info --- #
-        self.info_frame = ctk.CTkFrame(self.content_frame, corner_radius=10)
+        self.info_frame = ctk.CTkFrame(self.content_frame, corner_radius=15, fg_color="#1E1C1A", border_width=2, border_color="#87CEEB")
         self.info_frame.grid(row=0, column=0, sticky="nsew", padx=(0, 10))
         
-        self.thumb_label = ctk.CTkLabel(self.info_frame, text="Thumbnail Preview", height=200, fg_color="gray20", corner_radius=8)
+        self.thumb_label = ctk.CTkLabel(self.info_frame, text="✎ Thumbnail Preview", font=ctk.CTkFont(family="Ink Free", size=18), height=200, fg_color="#3E3C38", corner_radius=15)
         self.thumb_label.pack(fill="x", padx=15, pady=15)
         
-        self.title_label = ctk.CTkLabel(self.info_frame, text="Title: Not loaded", font=ctk.CTkFont(weight="bold"), wraplength=350, justify="left")
+        self.title_label = ctk.CTkLabel(self.info_frame, text="Title: Not loaded", font=ctk.CTkFont(family="Ink Free", size=18, weight="bold"), text_color="#F5F5DC", wraplength=350, justify="left")
         self.title_label.pack(anchor="w", padx=15, pady=5)
         
-        self.uploader_label = ctk.CTkLabel(self.info_frame, text="Uploader: -")
+        self.uploader_label = ctk.CTkLabel(self.info_frame, text="Uploader: -", font=ctk.CTkFont(family="Ink Free", size=16), text_color="#D1D5DB")
         self.uploader_label.pack(anchor="w", padx=15, pady=2)
         
-        self.duration_label = ctk.CTkLabel(self.info_frame, text="Duration: -")
+        self.duration_label = ctk.CTkLabel(self.info_frame, text="Duration: -", font=ctk.CTkFont(family="Ink Free", size=16), text_color="#D1D5DB")
         self.duration_label.pack(anchor="w", padx=15, pady=2)
         
-        self.size_label = ctk.CTkLabel(self.info_frame, text="Estimated Size: -")
+        self.size_label = ctk.CTkLabel(self.info_frame, text="Estimated Size: -", font=ctk.CTkFont(family="Ink Free", size=16), text_color="#D1D5DB")
         self.size_label.pack(anchor="w", padx=15, pady=2)
         
         # --- Right Column: Options --- #
-        self.options_frame = ctk.CTkFrame(self.content_frame, corner_radius=10)
+        self.options_frame = ctk.CTkFrame(self.content_frame, corner_radius=15, fg_color="#1E1C1A", border_width=2, border_color="#FFB347")
         self.options_frame.grid(row=0, column=1, sticky="nsew", padx=(10, 0))
         
-        ctk.CTkLabel(self.options_frame, text="Download Options", font=ctk.CTkFont(size=18, weight="bold")).pack(pady=(15, 10), padx=15, anchor="w")
+        ctk.CTkLabel(self.options_frame, text="✎ Download Options", font=ctk.CTkFont(family="Ink Free", size=22, weight="bold"), text_color="#FFB347").pack(pady=(15, 10), padx=15, anchor="w")
         
         # Quality Selector
-        ctk.CTkLabel(self.options_frame, text="Resolution:").pack(anchor="w", padx=15)
+        ctk.CTkLabel(self.options_frame, text="Resolution:", font=ctk.CTkFont(family="Ink Free", size=16), text_color="#D1D5DB").pack(anchor="w", padx=15)
         self.quality_var = ctk.StringVar(value="Best Quality")
-        self.quality_menu = ctk.CTkOptionMenu(self.options_frame, values=["Best Quality", "4K", "1440p", "1080p", "720p", "480p", "360p", "240p", "144p", "Audio Only"], variable=self.quality_var)
+        self.quality_menu = ctk.CTkOptionMenu(self.options_frame, values=["Best Quality", "4K", "1440p", "1080p", "720p", "480p", "360p", "240p", "144p", "Audio Only"], variable=self.quality_var, font=ctk.CTkFont(family="Ink Free", size=14), fg_color="#3E3C38", button_color="#5E4C38", corner_radius=10)
         self.quality_menu.pack(fill="x", padx=15, pady=(0, 10))
         
         # Format Selector
-        ctk.CTkLabel(self.options_frame, text="Format:").pack(anchor="w", padx=15)
-        self.format_menu = ctk.CTkOptionMenu(self.options_frame, values=["MP4", "MKV", "WEBM", "MOV"])
+        ctk.CTkLabel(self.options_frame, text="Format:", font=ctk.CTkFont(family="Ink Free", size=16), text_color="#D1D5DB").pack(anchor="w", padx=15)
+        self.format_menu = ctk.CTkOptionMenu(self.options_frame, values=["MP4", "MKV", "WEBM", "MOV"], font=ctk.CTkFont(family="Ink Free", size=14), fg_color="#3E3C38", button_color="#5E4C38", corner_radius=10)
         self.format_menu.pack(fill="x", padx=15, pady=(0, 10))
         
         # Checkboxes for embeddings
         self.embed_thumb_var = ctk.BooleanVar(value=True)
-        ctk.CTkCheckBox(self.options_frame, text="Embed Thumbnail", variable=self.embed_thumb_var).pack(anchor="w", padx=15, pady=5)
+        ctk.CTkCheckBox(self.options_frame, text="Embed Thumbnail", variable=self.embed_thumb_var, font=ctk.CTkFont(family="Ink Free", size=16), text_color="#F5F5DC", fg_color="#FFB347", border_color="#FFB347", hover_color="#5E4C38").pack(anchor="w", padx=15, pady=5)
         
         self.embed_meta_var = ctk.BooleanVar(value=True)
-        ctk.CTkCheckBox(self.options_frame, text="Embed Metadata", variable=self.embed_meta_var).pack(anchor="w", padx=15, pady=5)
+        ctk.CTkCheckBox(self.options_frame, text="Embed Metadata", variable=self.embed_meta_var, font=ctk.CTkFont(family="Ink Free", size=16), text_color="#F5F5DC", fg_color="#FFB347", border_color="#FFB347", hover_color="#5E4C38").pack(anchor="w", padx=15, pady=5)
         
         self.embed_subs_var = ctk.BooleanVar(value=False)
-        ctk.CTkCheckBox(self.options_frame, text="Embed Subtitles", variable=self.embed_subs_var).pack(anchor="w", padx=15, pady=5)
+        ctk.CTkCheckBox(self.options_frame, text="Embed Subtitles", variable=self.embed_subs_var, font=ctk.CTkFont(family="Ink Free", size=16), text_color="#F5F5DC", fg_color="#FFB347", border_color="#FFB347", hover_color="#5E4C38").pack(anchor="w", padx=15, pady=5)
 
         # Download Button
-        self.download_btn = ctk.CTkButton(self.options_frame, text="Download Video", height=50, corner_radius=10, fg_color="#10B981", hover_color="#059669", font=ctk.CTkFont(size=16, weight="bold"))
+        self.download_btn = ctk.CTkButton(self.options_frame, text="Download Video", height=55, corner_radius=15, fg_color="transparent", border_width=2, border_color="#8FBC8F", text_color="#8FBC8F", hover_color="#5E4C38", font=ctk.CTkFont(family="Ink Free", size=20, weight="bold"))
         self.download_btn.pack(side="bottom", fill="x", padx=15, pady=15)
         
-        self.progress_bar = ctk.CTkProgressBar(self.options_frame, height=10)
+        self.progress_bar = ctk.CTkProgressBar(self.options_frame, height=12, progress_color="#8FBC8F")
         self.progress_bar.pack(side="bottom", fill="x", padx=15, pady=(0, 5))
         self.progress_bar.set(0)
         
-        self.location_label = ctk.CTkLabel(self.options_frame, text=f"Location: {config.get('download_dir', 'Downloads')}", text_color="gray50")
+        self.location_label = ctk.CTkLabel(self.options_frame, text=f"Location: {config.get('download_dir', 'Downloads')}", font=ctk.CTkFont(family="Ink Free", size=14), text_color="#A3A3A3")
         self.location_label.pack(side="bottom", pady=5)
         
         self.fetch_btn.configure(command=self.fetch_metadata)
@@ -140,7 +140,8 @@ class VideoDownloaderFrame(ctk.CTkFrame):
     def start_download(self):
         if not self.active_info:
             return
-        self.download_btn.configure(text="Starting...", fg_color="#F59E0B", state="disabled")
+        self.download_btn.configure(text="Starting... (Click to Pause)", fg_color="#F59E0B", text_color="#1E1C1A", state="normal", command=self.toggle_pause)
+        self.is_paused = False
         
         def _on_progress(d):
             if d['status'] == 'downloading':
@@ -150,7 +151,8 @@ class VideoDownloaderFrame(ctk.CTkFrame):
                 def update_stats():
                     try:
                         self.progress_bar.set(percent)
-                        self.download_btn.configure(text=f"{format_size(speed)}/s - {int(percent*100)}%")
+                        if not getattr(self, 'is_paused', False):
+                            self.download_btn.configure(text=f"{format_size(speed)}/s - {int(percent*100)}%", text_color="#1E1C1A")
                     except:
                         pass
                 self.master.after(0, update_stats)
@@ -158,7 +160,7 @@ class VideoDownloaderFrame(ctk.CTkFrame):
             elif d['status'] == 'finished':
                 def update_done():
                     self.progress_bar.set(1)
-                    self.download_btn.configure(text="Finished!", fg_color="#10B981", state="normal")
+                    self.download_btn.configure(text="Finished!", fg_color="#10B981", text_color="#F5F5DC", state="normal", command=self.start_download)
                     # Reset button after 3 seconds so user can download again
                     self.master.after(3000, self._reset_download_btn)
                 self.master.after(0, update_done)
@@ -166,7 +168,7 @@ class VideoDownloaderFrame(ctk.CTkFrame):
         def _on_error(err):
             app_logger.error(str(err))
             def update_err():
-                self.download_btn.configure(text="Error! Retry?", fg_color="#EF4444", state="normal")
+                self.download_btn.configure(text="Error! Retry?", fg_color="#EF4444", text_color="#F5F5DC", state="normal", command=self.start_download)
                 # Reset button after 4 seconds
                 self.master.after(4000, self._reset_download_btn)
             self.master.after(0, update_err)
@@ -211,16 +213,32 @@ class VideoDownloaderFrame(ctk.CTkFrame):
             opts['format_sort'] = format_sort
         
         worker = DownloadWorker(url, opts, _on_progress, _on_finished, _on_error)
+        self.active_worker = worker
         worker.start()
+
+    def toggle_pause(self):
+        if not hasattr(self, 'active_worker') or not self.active_worker:
+            return
+            
+        if self.is_paused:
+            self.active_worker.resume()
+            self.is_paused = False
+            self.download_btn.configure(text="Resuming...", fg_color="#F59E0B", text_color="#1E1C1A")
+        else:
+            self.active_worker.pause()
+            self.is_paused = True
+            self.download_btn.configure(text="Paused (Click to Resume)", fg_color="#3B82F6", text_color="#F5F5DC")
 
     def _reset_download_btn(self):
         """Reset the download button to its original state."""
         try:
             self.download_btn.configure(
                 text="Download Video",
-                fg_color="#10B981",
-                hover_color="#059669",
-                state="normal"
+                fg_color="transparent",
+                text_color="#8FBC8F",
+                hover_color="#5E4C38",
+                state="normal",
+                command=self.start_download
             )
             self.progress_bar.set(0)
         except:

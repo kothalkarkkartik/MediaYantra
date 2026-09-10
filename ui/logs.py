@@ -9,15 +9,15 @@ class LogsFrame(ctk.CTkFrame):
         self.grid_columnconfigure(0, weight=1)
         
         # Header
-        self.header = ctk.CTkLabel(self, text="Application Logs", font=ctk.CTkFont(size=28, weight="bold"), text_color="#A855F7")
+        self.header = ctk.CTkLabel(self, text="✎ Application Logs", font=ctk.CTkFont(family="Ink Free", size=36, weight="bold"), text_color="#FFB347")
         self.header.grid(row=0, column=0, pady=(20, 10), sticky="w", padx=30)
         
         # Log Textbox
-        self.log_box = ctk.CTkTextbox(self, corner_radius=10, fg_color=("gray85", "gray15"), font=ctk.CTkFont(family="Consolas", size=12))
+        self.log_box = ctk.CTkTextbox(self, corner_radius=15, fg_color="#1E1C1A", border_width=2, border_color="#FFB347", text_color="#A7F3D0", font=ctk.CTkFont(family="Consolas", size=14))
         self.log_box.grid(row=1, column=0, sticky="nsew", padx=30, pady=(0, 20))
         
         # Clear Button
-        self.clear_btn = ctk.CTkButton(self, text="Clear Logs", fg_color="#EF4444", hover_color="#DC2626", command=self.clear_logs)
+        self.clear_btn = ctk.CTkButton(self, text="Clear Logs", height=45, corner_radius=15, fg_color="transparent", border_width=2, border_color="#F43F5E", text_color="#F43F5E", hover_color="#5E4C38", font=ctk.CTkFont(family="Ink Free", size=16, weight="bold"), command=self.clear_logs)
         self.clear_btn.grid(row=2, column=0, sticky="e", padx=30, pady=(0, 20))
         
         # Load initial logs backwards since logger_util adds to start of list

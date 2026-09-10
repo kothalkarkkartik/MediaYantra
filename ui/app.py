@@ -36,16 +36,17 @@ class MediaYantraApp(ctk.CTk):
         self.minsize(900, 600)
         
         ctk.set_appearance_mode("dark")
+        self.configure(fg_color="#2b2b2b")
         
         # Configure layout (Grid: 1 row, 2 columns)
         self.grid_rowconfigure(0, weight=1)
         self.grid_columnconfigure(1, weight=1)
         
         # ============ SIDEBAR ============
-        self.sidebar_frame = ctk.CTkFrame(self, width=220, corner_radius=0, fg_color=("#F3F4F6", "#1E293B"))
+        self.sidebar_frame = ctk.CTkFrame(self, width=220, corner_radius=0, fg_color="#1E1C1A")
         self.sidebar_frame.grid(row=0, column=0, sticky="nsew")
         
-        self.logo_label = ctk.CTkLabel(self.sidebar_frame, text="◈ Media Yantra ◈", font=ctk.CTkFont(size=24, weight="bold"), text_color="#A855F7")
+        self.logo_label = ctk.CTkLabel(self.sidebar_frame, text="✎ Media Yantra", font=ctk.CTkFont(family="Ink Free", size=26, weight="bold"), text_color="#FFB347")
         self.logo_label.grid(row=0, column=0, padx=20, pady=(30, 30))
         
         self.sidebar_buttons = []
@@ -110,11 +111,11 @@ class MediaYantraApp(ctk.CTk):
         except Exception:
             t_pad = 120
             
-        ctk.CTkLabel(self.about_frame, text="◈ Media Yantra ◈", font=ctk.CTkFont(size=36, weight="bold"), text_color="#A855F7").pack(pady=(t_pad, 10))
-        ctk.CTkLabel(self.about_frame, text="Version 1.0.0", font=ctk.CTkFont(size=18), text_color="gray60").pack(pady=(0, 30))
-        ctk.CTkLabel(self.about_frame, text="Created By", font=ctk.CTkFont(size=16)).pack(pady=(0, 5))
-        ctk.CTkLabel(self.about_frame, text="Kartik Kothalkar", font=ctk.CTkFont(size=24, weight="bold"), text_color="#06B6D4").pack(pady=(0, 5))
-        ctk.CTkLabel(self.about_frame, text="(Open Source Warrior)", font=ctk.CTkFont(size=16, slant="italic"), text_color="gray50").pack()
+        ctk.CTkLabel(self.about_frame, text="✎ Media Yantra", font=ctk.CTkFont(family="Ink Free", size=42, weight="bold"), text_color="#FFB347").pack(pady=(t_pad, 10))
+        ctk.CTkLabel(self.about_frame, text="Version 1.0.0", font=ctk.CTkFont(family="Ink Free", size=20), text_color="#F5F5DC").pack(pady=(0, 30))
+        ctk.CTkLabel(self.about_frame, text="Hand-crafted By", font=ctk.CTkFont(family="Ink Free", size=18)).pack(pady=(0, 5))
+        ctk.CTkLabel(self.about_frame, text="Kartik Kothalkar", font=ctk.CTkFont(family="Ink Free", size=28, weight="bold"), text_color="#8FBC8F").pack(pady=(0, 5))
+        ctk.CTkLabel(self.about_frame, text="(Open Source Warrior)", font=ctk.CTkFont(family="Ink Free", size=18, slant="italic"), text_color="gray50").pack()
         self.frames["about"] = self.about_frame
         
         # Select default frame
@@ -135,7 +136,7 @@ class MediaYantraApp(ctk.CTk):
         
         for btn_name, btn in buttons.items():
             if btn_name == name:
-                btn.configure(fg_color=("gray75", "gray25"))
+                btn.configure(fg_color="#3E3C38")
             else:
                 btn.configure(fg_color="transparent")
                 

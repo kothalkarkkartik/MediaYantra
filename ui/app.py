@@ -75,7 +75,10 @@ class MediaYantraApp(ctk.CTk):
         self.sidebar_frame.grid_rowconfigure(8, weight=1)
         
         self.about_btn = SidebarButton(self.sidebar_frame, text="ℹ About", command=lambda: self.select_frame("about"))
-        self.about_btn.grid(row=9, column=0, padx=10, pady=(5, 20), sticky="ew")
+        self.about_btn.grid(row=9, column=0, padx=10, pady=(5, 5), sticky="ew")
+        
+        self.credit_label = ctk.CTkLabel(self.sidebar_frame, text="Made by Kartik Kothalkar", font=ctk.CTkFont(family="Ink Free", size=12, slant="italic"), text_color="gray50")
+        self.credit_label.grid(row=10, column=0, padx=10, pady=(0, 20))
         
         # ============ MAIN CONTENT ============
         self.frames = {}

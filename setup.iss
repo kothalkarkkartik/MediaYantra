@@ -3,14 +3,14 @@ AppName=Media Yantra
 AppVersion=1.0.0
 AppPublisher=Kartik Kothalkar (Open Source Warrior)
 AppCopyright=Kartik Kothalkar
-InfoBeforeFile=README.md
+
 DefaultDirName={autopf}\Media Yantra
 DefaultGroupName=Media Yantra
 UninstallDisplayIcon={app}\Media Yantra.exe
 Compression=lzma2/ultra64
 SolidCompression=yes
 OutputDir=Release
-OutputBaseFilename=Media_Yantra_Setup_v1.0
+OutputBaseFilename=Media_Yantra_Setup_Final
 SetupIconFile=assets\icon.ico
 DisableProgramGroupPage=yes
 PrivilegesRequired=lowest
